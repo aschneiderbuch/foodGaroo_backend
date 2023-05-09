@@ -11,7 +11,10 @@ const PORT = process.env.PORT || 8989;
 
 //middleware
 app.use(cors());
-app.use(multer());
+
+
+const upload = multer() 
+// app.use(multer());
 app.use(cookieParser());
 app.use(express.json());
 app.use(morgan("dev"));
