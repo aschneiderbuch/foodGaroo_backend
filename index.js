@@ -25,5 +25,10 @@ app.use(morgan("dev"));
 app.post('/api/v1/login', encryptPassword, login)    // as encryptPassword müsste von Lando von der Regestrierung kommen
 // ! Vorsicht token ist wegen Testen auf 20 Tage gesetzt 
 
+// verifyJWTTokenMiddleware    // as für die Routen
+
+
+
+
 app.listen(PORT, () => console.log("Server listening on port", PORT));
 // test ob render jetzt geht

@@ -36,3 +36,4 @@ export const login = async (req, res) => {
         res.status(500).json({ message: `User Login nicht möglich ${err}`}, 581)
     }
 }
+
