@@ -12,6 +12,7 @@ import { logout } from "./controller/logoutController.js";
 import { verifyJWTTokenMiddleware } from "./middlewares/verifyJWTTokenMiddleware.js";
 import { cloudinaryUpload } from "./controller/cloudinaryUploadController.js";
 import { multerCloudinaryOptionsController } from "./controller/multerCloudinaryOptionsController.js";
+import { getProfileId } from "./controller/getProfileIdController.js";
 
 const app = express();
 
@@ -39,6 +40,10 @@ app.post("/api/v1/register", encryptPassword, register);
 
 // ! dann noch      verifyJWTTokenMiddleware  mit rein // as für die Route
 app.post('/api/v1/directupload', uploadCloudinary.single('file'), cloudinaryUpload); // as für cloudinaryUpload
+
+
+
+app.get('/api/v1/profile/:id', verifyJWTTokenMiddleware, getProfileId)
 
 app.get("/", deleteCookieMiddleware, logout); // as für logout
 
