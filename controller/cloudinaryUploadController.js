@@ -9,7 +9,6 @@ cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET,
-    cloud_folder: process.env.CLOUDINYRY_IMAGE_FOLDER
 })
 
 
@@ -17,7 +16,7 @@ export const cloudinaryUpload = async (req, res) => {
 
     try {
         cloudinary.v2.uploader.upload_stream({
-            resource_type: 'image', folder: cloud_folder
+            resource_type: 'image', folder: '2023imageOrdner_foodGuru'
         },
             async (err, result) => {
 
@@ -32,8 +31,7 @@ export const cloudinaryUpload = async (req, res) => {
                 }, { abortEarly: false })
 
                 if (error) {
-                    const errorMessages = error.details.map(detail => detail.message)
-                    throw new Error(`Fehler beim Hochladen cloudinaryUpload: ${errorMessages.join(', ')} `, 585)
+                    throw new Error(`Fehler beim Hochladen cloudinaryUpload: ${error} `, 585)
                 }
 
                 const db = await getDB()

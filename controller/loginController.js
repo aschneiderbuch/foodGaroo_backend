@@ -28,7 +28,7 @@ export const login = async (req, res) => {
             // token erstellen
             const token = createToken(dbUser)
             res.cookie('token', token, cookieConfig)
-            res.status(200)
+            res.status(200).end()
         }
         
     } catch (err) {

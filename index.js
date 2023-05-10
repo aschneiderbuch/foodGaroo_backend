@@ -37,7 +37,7 @@ app.post("/api/v1/login", encryptPassword, login); // as encryptPassword müsste
 app.get("/api/v1/availiable", emailAvailable);
 app.post("/api/v1/register", encryptPassword, register);
 
-app.post('/directupload', verifyJWTTokenMiddleware, uploadCloudinary.single('file'), cloudinaryUpload); // as für cloudinaryUpload
+app.post('/directupload', uploadCloudinary.single('file'), cloudinaryUpload); // as für cloudinaryUpload
 
 app.get("/", deleteCookieMiddleware, logout); // as für logout
 
