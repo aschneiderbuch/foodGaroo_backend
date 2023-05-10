@@ -1,3 +1,4 @@
+import { contextsKey } from 'express-validator/src/base.js'
 import { getDB } from '../utils/db.js'
 import { ObjectId } from 'mongodb'
 
@@ -6,10 +7,12 @@ export const getProfileId = async (req, res) => {
 
     try {
         console.log(req.body)
-
-        const { id } = req.params
+        console.log(req.user)  // ! das wird bei der Middleware verifyJWTTokenMiddleware eingefügt, so das wir immer wisser wer der user ist
+        
+       // const {id} = req.params
+        const  id  = req.user.user
         const db = await getDB()
-        const user = await db.collection(COL).findOne({ _id: new ObjectId(id) })
+        const user = await db.collection(COL).findOne({ _id: new ObjectId(id) },{ projection: { password: 0 }}) // ! hier wird das password nicht mit ausgegeben das es sonst im FrontEnd sichtbar ist
         console.log(user)
 
         if (user) {

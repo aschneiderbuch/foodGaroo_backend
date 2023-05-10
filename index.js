@@ -43,9 +43,10 @@ app.post('/api/v1/directupload', uploadCloudinary.single('file'), cloudinaryUplo
 
 
 
-app.get('/api/v1/profile/:id', verifyJWTTokenMiddleware, getProfileId)
+app.get('/api/v1/profile',verifyJWTTokenMiddleware, getProfileId)
+// http://localhost:8989/api/v1/profile/645b9762bef4c15d4e523493
 
-app.get("/", deleteCookieMiddleware, logout); // as für logout
+app.get("/api/v1/logout", deleteCookieMiddleware, logout); // as für logout
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));
 // test ob render jetzt geht
