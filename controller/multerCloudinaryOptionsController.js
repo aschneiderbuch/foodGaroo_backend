@@ -19,7 +19,7 @@ export const multerCloudinaryOptionsController = {
 
         if (error) {
             const errorMessages = error.details.map(detail => detail.message)
-            cb(new Error(`Fehler beim Hochladen: ${errorMessages.join(', ')}`, 481))
+            cb(new Error(`Fehler beim Hochladen multerCloudinaryOptionsController: ${errorMessages.join(', ')}`, 584))
         }
         else {
             cb(null, true)
