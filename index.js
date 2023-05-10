@@ -15,7 +15,8 @@ const app = express();
 const PORT = process.env.PORT || 8989;
 
 //middleware
-app.use(cors({  credentials: true}));    // as damit https Cookie vom Fontend angenommen wird
+app.use(cors( {origin: true,
+     credentials:  true}));    // as damit https Cookie vom Fontend angenommen wird
 
 
 const upload = multer() 
