@@ -29,7 +29,7 @@ export const cloudinaryUpload = async (req, res) => {
                 const { error, value } = schema.validate({
                     name: req.body.name,
                     imgUrl: result.secure_url
-                }, { abortEarly: false})
+                }, { abortEarly: false })
 
                 if (error) {
                     const errorMessages = error.details.map(detail => detail.message)
@@ -38,8 +38,10 @@ export const cloudinaryUpload = async (req, res) => {
 
                 const db = await getDB()
                 db.collection('profilBilderURL').insertOne({ name: req.body.name, imgUrl: result.secure_url })
-                res.status(201).json( { message: 'Bild erfolgreich hochgeladen', url: result.secure_url})
-            }.end(req.file.buffer)
-        )
+                res.status(201).json({ message: 'Bild erfolgreich hochgeladen', url: result.secure_url })
+            }).end(req.file.buffer)
+
+    } catch (err){
+        res.status(500).json({ message: `Fehler beim Hochladen: ${err.message}`})
     }
 }

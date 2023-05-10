@@ -1,4 +1,4 @@
-import { verifyToken } from "../utils/token"
+import { verifyToken } from "../utils/token.js"
 
 
 export const verifyJWTTokenMiddleware = (req, res, next) => {

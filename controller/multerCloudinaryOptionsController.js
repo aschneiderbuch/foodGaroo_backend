@@ -1,5 +1,5 @@
 import Joi from 'joi';
-
+import multer from 'multer';
 
 export const multerCloudinaryOptionsController = {
     limits: {
