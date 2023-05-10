@@ -6,6 +6,7 @@ import multer from "multer";
 import "./config/config.js";
 import {emailAvailable, register} from "./controller/userController.js"
 import {encryptPassword} from "./middlewares/authMiddleware.js"
+import { login } from "./controller/loginController.js";
 
 const app = express();
 
@@ -24,7 +25,7 @@ app.use(morgan("dev"));
 
 // routes
 
-app.post('/api/v1/login', encryptPassword, login)    // as encryptPassword müsste von Lando von der Regestrierung kommen
+app.post('/api/v1/login', encryptPassword,login)    // as encryptPassword müsste von Lando von der Regestrierung kommen
 // ! Vorsicht token ist wegen Testen auf 20 Tage gesetzt 
 
 // verifyJWTTokenMiddleware    // as für die Routen
