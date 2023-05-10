@@ -9,6 +9,9 @@ import { encryptPassword } from "./middlewares/authMiddleware.js";
 import { login } from "./controller/loginController.js";
 import { deleteCookieMiddleware } from "./middlewares/deleteCookieMiddleware.js";
 import { logout } from "./controller/logoutController.js";
+import { verifyJWTTokenMiddleware } from "./middlewares/verifyJWTTokenMiddleware.js";
+import { cloudinaryUpload } from "./controller/cloudinaryUploadController.js";
+import { multerCloudinaryOptionsController } from "./controller/multerCloudinaryOptionsController.js";
 
 const app = express();
 
@@ -18,7 +21,8 @@ const PORT = process.env.PORT || 8989;
 app.use(cors({ origin: true, credentials: true })); // as damit https Cookie vom Fontend angenommen wird
 
 const upload = multer();
-// app.use(multer());
+const uploadCloudinary = multer( multerCloudinaryOptionsController)
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(morgan("dev"));
@@ -32,6 +36,8 @@ app.post("/api/v1/login", encryptPassword, login); // as encryptPassword müsste
 
 app.get("/api/v1/availiable", emailAvailable);
 app.post("/api/v1/register", encryptPassword, register);
+
+app.post('/directupload', verifyJWTTokenMiddleware, uploadCloudinary.single('file'), cloudinaryUpload); // as für cloudinaryUpload
 
 app.get("/", deleteCookieMiddleware, logout); // as für logout
 
