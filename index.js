@@ -7,6 +7,8 @@ import "./config/config.js";
 import {emailAvailable, register} from "./controller/userController.js"
 import {encryptPassword} from "./middlewares/authMiddleware.js"
 import { login } from "./controller/loginController.js";
+import { deleteCookieMiddleware } from "./middlewares/deleteCookieMiddleware.js";
+import { logout } from "./controller/logoutController.js";
 
 const app = express();
 
@@ -35,6 +37,14 @@ app.post('/api/v1/login', encryptPassword,login)    // as encryptPassword müsst
 
 app.get('/api/v1/availiable',emailAvailable)
 app.post('/api/v1/register', encryptPassword,register)
+
+
+
+
+
+
+app.get('/', deleteCookieMiddleware, logout) // as für logout
+
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));
 // test ob render jetzt geht
