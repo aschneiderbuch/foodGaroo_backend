@@ -13,6 +13,7 @@ import { verifyJWTTokenMiddleware } from "./middlewares/verifyJWTTokenMiddleware
 import { cloudinaryUpload } from "./controller/cloudinaryUploadController.js";
 import { multerCloudinaryOptionsController } from "./controller/multerCloudinaryOptionsController.js";
 import { getProfileId } from "./controller/getProfileIdController.js";
+import { search } from "./controller/searchController.js";
 
 const app = express();
 
@@ -51,6 +52,8 @@ app.get("/api/v1/logout", deleteCookieMiddleware, logout); // as für logout
 app.get('/api/v1/verify', verifyJWTTokenMiddleware, (_,res)=> {
     res.end()
 })
+
+app.get('/api/v1/search', search)
 
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));
