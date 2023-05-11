@@ -13,6 +13,6 @@ export const verifyJWTTokenMiddleware = (req, res, next) => {
         next()
     } catch (err) {
         console.log(err)
-        res.status(401).json( { message: `Token konnte nicht verifiziert werden ${err}`}, 583)
+        res.status(401).end()
     }
 }
