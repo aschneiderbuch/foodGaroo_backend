@@ -9,7 +9,7 @@ export const search = async (req, res) => {
         if (!req.query.limit) req.query.limit ="20"
         
         const db = await getDB()
-        const cursor = await db.collection(COL).find({"title" : {$regex : req.query.search}},{"title":1});
+        const cursor = await db.collection(COL).find({"title" : {$regex : req.query.search+" "}},{projection:{"title":1,"price":1,"likes":1,"aisle":1,"description":1,"image":1,"badges":1,"importantBadges":1}});
         const result = await cursor.skip(Number(req.query.offset)).limit(Number(req.query.limit)).toArray();
         res.json(result)
     } catch (err) {
