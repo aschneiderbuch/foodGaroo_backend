@@ -48,5 +48,10 @@ app.get('/api/v1/profile',verifyJWTTokenMiddleware, getProfileId)
 
 app.get("/api/v1/logout", deleteCookieMiddleware, logout); // as für logout
 
+app.get('/api/v1/verify', verifyJWTTokenMiddleware, (_,res)=> {
+    res.end()
+})
+
+
 app.listen(PORT, () => console.log("Server listening on port", PORT));
 // test ob render jetzt geht
