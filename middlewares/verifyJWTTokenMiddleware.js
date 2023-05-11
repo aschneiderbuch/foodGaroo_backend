@@ -6,7 +6,7 @@ export const verifyJWTTokenMiddleware = (req, res, next) => {
 
     try {
         const userClaim = verifyToken(token)
-        
+       
         req.user = userClaim
         console.log(req.user)
         

@@ -39,7 +39,7 @@ app.get("/api/v1/availiable", emailAvailable);
 app.post("/api/v1/register", encryptPassword, register);
 
 // ! dann noch      verifyJWTTokenMiddleware  mit rein // as für die Route
-app.post('/api/v1/directupload', uploadCloudinary.single('file'), cloudinaryUpload); // as für cloudinaryUpload
+app.post('/api/v1/directupload', verifyJWTTokenMiddleware, uploadCloudinary.single('file'), cloudinaryUpload); // as für cloudinaryUpload
 
 
 
