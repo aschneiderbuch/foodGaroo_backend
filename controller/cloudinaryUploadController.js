@@ -63,6 +63,7 @@ export const cloudinaryUpload = async (req, res) => {
         }).end(req.file.buffer)
 
     } catch (err) {
-        res.status(500).json({ message: `Fehler beim Hochladen: ${err.message}` })
+        console.log(err, 585 )
+        res.status(500).json({ message: `Fehler beim Hochladen: ` })
     }
 }

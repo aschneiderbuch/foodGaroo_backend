@@ -22,8 +22,9 @@ export const getProfileId = async (req, res) => {
             res.status(404).json({ message: `User mit ID: ${id} nicht gefunden` }, 481)
         }
 
-    } catch (err) {
-        res.status(500).json({ message: `Fehler bei getProfileId: ${err}` }, 482)
+    } catch (err ) {
+        console.log(err , 482 )
+        res.status(500).json({ message: `Fehler bei getProfileId` }, 482)
     }
 
 }
