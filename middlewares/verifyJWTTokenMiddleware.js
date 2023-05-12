@@ -12,7 +12,7 @@ export const verifyJWTTokenMiddleware = (req, res, next) => {
         
         next()
     } catch (err) {
-        console.log(err)
+        console.log(err , 583)
         res.status(401).end()
     }
 }

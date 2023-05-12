@@ -41,11 +41,9 @@ export const cloudinaryUpload = async (req, res) => {
             const db = await getDB()
             // db.collection('user').insertOne({ name: req.body.name, imgUrl: result.secure_url })
             // zuerst nach der user id anhand von name: suchen,  und dann updateOne mit $set und dann die imgUrl: result.secure_url rein
-            console.log('############################')
-            console.log(req.user.user)
-            console.log(req.body.name)
+
             const test = new ObjectId( req.user.user )
-            console.log(test)
+            
             console.log("update ausühren")
             console.log('filet ', { _id: test._id })
             console.log('updat', { $set: { userImg: result.secure_url } })
@@ -63,6 +61,7 @@ export const cloudinaryUpload = async (req, res) => {
         }).end(req.file.buffer)
 
     } catch (err) {
-        res.status(500).json({ message: `Fehler beim Hochladen: ${err.message}` })
+        console.log(err, 585 )
+        res.status(500).json({ message: `Fehler beim Hochladen: ` })
     }
 }

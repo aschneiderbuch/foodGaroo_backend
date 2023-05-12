@@ -14,6 +14,8 @@ import { cloudinaryUpload } from "./controller/cloudinaryUploadController.js";
 import { multerCloudinaryOptionsController } from "./controller/multerCloudinaryOptionsController.js";
 import { getProfileId } from "./controller/getProfileIdController.js";
 import { search } from "./controller/searchController.js";
+import { mongoDbFilterQueryController } from "./controller/mongoDbFilterQueryController.js";
+
 
 const app = express();
 
@@ -31,23 +33,22 @@ app.use(morgan("dev"));
 
 // routes
 
-app.post("/api/v1/login", encryptPassword, login); // as encryptPassword müsste von Lando von der Regestrierung kommen
+app.post("/api/v1/login", encryptPassword, login); 
 // ! Vorsicht token ist wegen Testen auf 20 Tage gesetzt
 
-// verifyJWTTokenMiddleware    // as für die Routen
 
 app.get("/api/v1/availiable", emailAvailable);
 app.post("/api/v1/register", encryptPassword, register);
 
 // ! dann noch      verifyJWTTokenMiddleware  mit rein // as für die Route
-app.post('/api/v1/directupload', verifyJWTTokenMiddleware, uploadCloudinary.single('file'), cloudinaryUpload); // as für cloudinaryUpload
+app.post('/api/v1/directupload', verifyJWTTokenMiddleware, uploadCloudinary.single('file'), cloudinaryUpload); 
 
-
+app.get('/api/v1/filter', mongoDbFilterQueryController)
 
 app.get('/api/v1/profile',verifyJWTTokenMiddleware, getProfileId)
-// http://localhost:8989/api/v1/profile/645b9762bef4c15d4e523493
 
-app.get("/api/v1/logout", deleteCookieMiddleware, logout); // as für logout
+
+app.get("/api/v1/logout",verifyJWTTokenMiddleware, deleteCookieMiddleware, logout); 
 
 app.get('/api/v1/verify', verifyJWTTokenMiddleware, (_,res)=> {
     res.end()

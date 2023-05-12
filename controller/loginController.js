@@ -30,7 +30,7 @@ export const login = async (req, res) => {
 			res.end();
 		}
 	} catch (err) {
-		console.log(err);
-		res.status(500).json({ message: `User Login nicht möglich ${err}` }, 581);
+		console.log(err , 581 );
+		res.status(500).json({ message: `User Login nicht möglich` }, 581);
 	}
 };
