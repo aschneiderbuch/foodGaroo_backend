@@ -9,10 +9,18 @@ export const mongoDbFilterQueryController = async (req, res) => {
     //  category=>in aisle=>Frozen (string)  und  badges=> in badges=>[egg_free, sugar_free]   und   collection spoonecularGroceries (Produkte)
     try {
 
-        const { sortBy, priceFrom, priceTo, category, badges, importantBadges } = req.query
+        const { sortBy, priceFrom, priceTo, category, badges, importantBadges, offset, limit } = req.query
         console.log(req.query)
         const db = await getDB()
 
+        if(!req.query.sortBy) return res.status(400).end()
+         // setzt für offset und limit default Werte
+        if(!req.query.offset) {
+            req.query.offset = "20"
+        }
+        if(!req.query.limit) {
+            req.query.limit = "20"
+        }
 
 
  let badgesArray = []
@@ -75,13 +83,18 @@ let categoryArray = []
 
         const result = await db.collection(COL).find(filter, {
             projection: { _id: 1, id: 1, title: 1, price: 1, likes: 1, spoonacularScore: 1 , badges: 1, importantBadges: 1, aisle: 1, brand: 1, image: 1, images: 1, description: 1 }
-        }).sort(sortieren()).toArray()
+        }).sort(sortieren()) 
+        // ohne .array() weil wir unten mit cursor arbeiten und das offset und limit brauchen
+            
+        // hier wird mit dem cursor gearbeitet = zeiger auf die Datenbank
+        const resultCursor = await result.skip(Number(offset)).limit(Number(limit)).toArray()
+
 
         const resultCount = await db.collection(COL).find(filter, {
             projection: { _id: 1, id: 1, title: 1, price: 1, likes: 1, spoonacularScore: 1, badges: 1, importantBadges: 1, aisle: 1, brand: 1, image: 1, images: 1, description: 1 }
         }).sort(sortieren()).count()
 
-        res.status(200).json({ resultCount, result })
+        res.status(200).json({ resultCount, resultCursor })
 
     } catch (err) {
         console.log(err)
