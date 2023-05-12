@@ -14,6 +14,7 @@ import { multerCloudinaryOptionsController } from "./controller/multerCloudinary
 import { getProfileId } from "./controller/getProfileIdController.js";
 import { getCategories, getProductsFromCategories, search, getProductDetails } from "./controller/groceryController.js";
 import { mongoDbFilterQueryController } from "./controller/mongoDbFilterQueryController.js";
+import { getBadges } from "./controller/getBadges.js";
 
 const app = express();
 
@@ -39,10 +40,10 @@ app.post("/api/v1/register", encryptPassword, register);
 
 // ! dann noch      verifyJWTTokenMiddleware  mit rein // as für die Route
 app.post(
-	"/api/v1/directupload",
-	verifyJWTTokenMiddleware,
-	uploadCloudinary.single("file"),
-	cloudinaryUpload
+    "/api/v1/directupload",
+    verifyJWTTokenMiddleware,
+    uploadCloudinary.single("file"),
+    cloudinaryUpload
 );
 
 app.get("/api/v1/filter", mongoDbFilterQueryController);
@@ -52,13 +53,15 @@ app.get("/api/v1/profile", verifyJWTTokenMiddleware, getProfileId);
 app.get("/api/v1/logout", verifyJWTTokenMiddleware, logout);
 
 app.get("/api/v1/verify", verifyJWTTokenMiddleware, (_, res) => {
-	res.end();
+    res.end();
 });
 
 app.get("/api/v1/search", search);
 app.get("/api/v1/categories", getCategories);
 app.get("/api/v1/products", getProductsFromCategories);
 app.get("/api/v1/product/:id", getProductDetails)
+
+app.get('/api/v1/badges',verifyJWTTokenMiddleware, getBadges)
 
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));

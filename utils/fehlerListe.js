@@ -1,4 +1,5 @@
 import { cloudinaryUpload } from "../controller/cloudinaryUploadController";
+import { getBadges } from "../controller/getBadges";
 import { getProfileId } from "../controller/getProfileIdController";
 import { login } from "../controller/loginController";
 import { multerCloudinaryOptionsController } from "../controller/multerCloudinaryOptionsController";
@@ -11,3 +12,4 @@ verifyJWTTokenMiddleware() // 583 Token konnte nicht verifiziert werden
 multerCloudinaryOptionsController() // 584 Fehler beim Hochladen: "bildGroesse" muss unter 1 MB sein
 cloudinaryUpload() // 585 Fehler beim Hochladen cloudinaryUpload: "name" ist erforderlich, "imgUrl" muss eine gültige Uri sein
 getProfileId() // 481 482  User mit ID: ${id} nicht gefunden
+getBadges() // 586 
