@@ -1,4 +1,5 @@
 import {getDB} from "../utils/db.js"
+import { ObjectId } from 'mongodb'
 
 const COL = "spoonecularGroceries"
 
@@ -44,6 +45,21 @@ export const getProductsFromCategories= async function(req, res) {
         const cursor = await db.collection(COL).find({"aisle":req.query.category})
         const result = await cursor.skip(Number(req.query.offset)).limit(Number(req.query.limit)).toArray()
         res.json(result).end()
+    }catch (err) {
+        console.log(err)
+        res.status(500).end()
+    }
+}
+export const getProductDetails = async function(req, res) {
+    try{
+        console.log(req.params.id);
+
+        if (!req.params.id) return res.status(504).end()
+        console.log(req.params.id);
+        const db = await getDB()
+        const result = await db.collection(COL).findOne({_id: new ObjectId(req.params.id)})
+        res.json(result).end()
+
     }catch (err) {
         console.log(err)
         res.status(500).end()

@@ -12,7 +12,7 @@ import { verifyJWTTokenMiddleware } from "./middlewares/verifyJWTTokenMiddleware
 import { cloudinaryUpload } from "./controller/cloudinaryUploadController.js";
 import { multerCloudinaryOptionsController } from "./controller/multerCloudinaryOptionsController.js";
 import { getProfileId } from "./controller/getProfileIdController.js";
-import { getCategories, getProductsFromCategories, search } from "./controller/groceryController.js";
+import { getCategories, getProductsFromCategories, search, getProductDetails } from "./controller/groceryController.js";
 import { mongoDbFilterQueryController } from "./controller/mongoDbFilterQueryController.js";
 
 const app = express();
@@ -58,6 +58,7 @@ app.get("/api/v1/verify", verifyJWTTokenMiddleware, (_, res) => {
 app.get("/api/v1/search", search);
 app.get("/api/v1/categories", getCategories);
 app.get("/api/v1/products", getProductsFromCategories);
+app.get("/api/v1/product/:id", getProductDetails)
 
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));
