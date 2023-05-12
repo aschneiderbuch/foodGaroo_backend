@@ -14,6 +14,7 @@ import { multerCloudinaryOptionsController } from "./controller/multerCloudinary
 import { getProfileId } from "./controller/getProfileIdController.js";
 import { getCategories, getProductsFromCategories, search } from "./controller/groceryController.js";
 import { mongoDbFilterQueryController } from "./controller/mongoDbFilterQueryController.js";
+import { getBadges } from "./controller/getBadges.js";
 
 const app = express();
 
@@ -58,6 +59,8 @@ app.get("/api/v1/verify", verifyJWTTokenMiddleware, (_, res) => {
 app.get("/api/v1/search", search);
 app.get("/api/v1/categories", getCategories);
 app.get("/api/v1/products", getProductsFromCategories);
+
+app.get('/api/v1/badges',verifyJWTTokenMiddleware, getBadges)
 
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));
