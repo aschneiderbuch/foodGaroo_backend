@@ -39,10 +39,10 @@ app.post("/api/v1/register", encryptPassword, register);
 
 // ! dann noch      verifyJWTTokenMiddleware  mit rein // as für die Route
 app.post(
-	"/api/v1/directupload",
-	verifyJWTTokenMiddleware,
-	uploadCloudinary.single("file"),
-	cloudinaryUpload
+    "/api/v1/directupload",
+    verifyJWTTokenMiddleware,
+    uploadCloudinary.single("file"),
+    cloudinaryUpload
 );
 
 app.get("/api/v1/filter", mongoDbFilterQueryController);
@@ -52,7 +52,7 @@ app.get("/api/v1/profile", verifyJWTTokenMiddleware, getProfileId);
 app.get("/api/v1/logout", verifyJWTTokenMiddleware, logout);
 
 app.get("/api/v1/verify", verifyJWTTokenMiddleware, (_, res) => {
-	res.end();
+    res.end();
 });
 
 app.get("/api/v1/search", search);
