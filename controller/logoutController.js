@@ -1,5 +1,3 @@
-
-
 export const logout = async (req, res) => {
-    res.end()
-}
+	res.clearCookie("token").end();
+};
