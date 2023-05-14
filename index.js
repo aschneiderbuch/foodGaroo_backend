@@ -15,6 +15,7 @@ import { getProfileId } from "./controller/getProfileIdController.js";
 import { getCategories, getProductsFromCategories, search, getProductDetails } from "./controller/groceryController.js";
 import { mongoDbFilterQueryController } from "./controller/mongoDbFilterQueryController.js";
 import { getBadges } from "./controller/getBadges.js";
+import { postUserInputDatenUpdaten } from "./controller/postUserInputDatenUpdaten.js";
 
 const app = express();
 
@@ -62,7 +63,7 @@ app.get("/api/v1/products", getProductsFromCategories);
 app.get("/api/v1/product/:id", getProductDetails)
 
 app.get('/api/v1/badges',verifyJWTTokenMiddleware, getBadges)
-
+app.put('/api/v1/editUserProfile',verifyJWTTokenMiddleware,  postUserInputDatenUpdaten)
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));
 // test ob render jetzt geht
