@@ -62,12 +62,11 @@ export const getWishlist = async (req, res) => {
         const id = req.user.user
 
         // nicht _id sondern userID weil wir nach der userID suchen
-        const filterNachId = { userID: new ObjectId(id) }
+        const filterNachId = { _id: new ObjectId(id) }
 
         const db = await getDB()
         const wishlist = await db.collection(COL).findOne(filterNachId)
 
-        console.log(wishlist)
         res.status(200).json(wishlist).end()
     }   catch (err) {
         console.log(err, 590)
