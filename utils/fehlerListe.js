@@ -6,6 +6,7 @@ import { multerCloudinaryOptionsController } from "../controller/multerCloudinar
 import { postUserInputDatenUpdaten } from "../controller/postUserInputDatenUpdaten";
 import { verifyJWTTokenMiddleware } from "../middlewares/verifyJWTTokenMiddleware";
 import { verifyToken } from "./token";
+import { postWishlist, deleteWishlistItem } from "../controller/wishlistController";
 
 login() // 581 User Login     // 404 User Not Found
 verifyToken() // 582 Token konnte nicht verifiziert werden
@@ -15,4 +16,5 @@ cloudinaryUpload() // 585 Fehler beim Hochladen cloudinaryUpload: "name" ist erf
 getProfileId() // 481 482  User mit ID: ${id} nicht gefunden
 getBadges() // 586 
 postUserInputDatenUpdaten() // 587 500 Fehler bei postUserInputDatenUpdaten
-postWishlistDatename() // 588  Fehler bei postWishlist
+postWishlist() // 588  Fehler bei postWishlist
+deleteWishlistItem() // 589

@@ -17,7 +17,7 @@ import { mongoDbFilterQueryController } from "./controller/mongoDbFilterQueryCon
 import { getBadges } from "./controller/getBadges.js";
 import { postUserInputDatenUpdaten } from "./controller/postUserInputDatenUpdaten.js";
 import { getCart, addItemToCart, deleteItemFromCart } from "./controller/cartController.js";
-import { postWishlist } from "./controller/wishlistController.js";
+import { postWishlist, deleteWishlistItem, getWishlist } from "./controller/wishlistController.js";
 
 
 const app = express();
@@ -74,9 +74,9 @@ app.post('/api/v1/cart',verifyJWTTokenMiddleware, addItemToCart)
 app.delete('/api/v1/cart',verifyJWTTokenMiddleware, deleteItemFromCart)
 
 
-//app.get('/api/v1/wishlist', getWishlist)
-app.post('/api/v1/addWishlist', postWishlist)
-//app.delete('/api/v1/deleteWishlist', deleteWishlist)
+app.get('/api/v1/wishlist', getWishlist)
+app.post('/api/v1/addWishlist',verifyJWTTokenMiddleware, postWishlist)
+app.delete('/api/v1/deleteWishlist',verifyJWTTokenMiddleware, deleteWishlistItem)
 
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));
