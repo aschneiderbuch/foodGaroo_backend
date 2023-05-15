@@ -33,3 +33,11 @@ export const postWishlist = async (req, res) => {
         res.status(500).json({ message: `Fehler bei postWishlist` }, 588)
     }
 }
+
+
+
+// 589  
+// nur das eine item aus dem Whislist Array löschen
+const deleteWishlistItem = async (req, res) => {
+    
+}

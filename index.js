@@ -66,9 +66,9 @@ app.get("/api/v1/product/:id", getProductDetails)
 app.get('/api/v1/badges',verifyJWTTokenMiddleware, getBadges)
 app.put('/api/v1/editUserProfile',verifyJWTTokenMiddleware,  postUserInputDatenUpdaten)
 
-app.get('/api/v1/wishlist', getWishlist)
+//app.get('/api/v1/wishlist', getWishlist)
 app.post('/api/v1/addWishlist', postWishlist)
-app.post('/api/v1/deleteWishlist', deleteWishlist)
+//app.post('/api/v1/deleteWishlist', deleteWishlist)
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));
 // test ob render jetzt geht
