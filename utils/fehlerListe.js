@@ -6,7 +6,7 @@ import { multerCloudinaryOptionsController } from "../controller/multerCloudinar
 import { postUserInputDatenUpdaten } from "../controller/postUserInputDatenUpdaten";
 import { verifyJWTTokenMiddleware } from "../middlewares/verifyJWTTokenMiddleware";
 import { verifyToken } from "./token";
-import { postWishlist, deleteWishlistItem } from "../controller/wishlistController";
+import { postWishlist, deleteWishlistItem, getWishlist } from "../controller/wishlistController";
 
 login() // 581 User Login     // 404 User Not Found
 verifyToken() // 582 Token konnte nicht verifiziert werden
@@ -18,3 +18,4 @@ getBadges() // 586
 postUserInputDatenUpdaten() // 587 500 Fehler bei postUserInputDatenUpdaten
 postWishlist() // 588  Fehler bei postWishlist
 deleteWishlistItem() // 589
+getWishlist() // 590

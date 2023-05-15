@@ -74,7 +74,7 @@ app.post('/api/v1/cart',verifyJWTTokenMiddleware, addItemToCart)
 app.delete('/api/v1/cart',verifyJWTTokenMiddleware, deleteItemFromCart)
 
 
-app.get('/api/v1/wishlist', getWishlist)
+app.get('/api/v1/wishlist',verifyJWTTokenMiddleware, getWishlist)
 app.post('/api/v1/addWishlist',verifyJWTTokenMiddleware, postWishlist)
 app.delete('/api/v1/deleteWishlist',verifyJWTTokenMiddleware, deleteWishlistItem)
 
