@@ -16,8 +16,9 @@ import { getCategories, getProductsFromCategories, search, getProductDetails } f
 import { mongoDbFilterQueryController } from "./controller/mongoDbFilterQueryController.js";
 import { getBadges } from "./controller/getBadges.js";
 import { postUserInputDatenUpdaten } from "./controller/postUserInputDatenUpdaten.js";
-import { getCart, addItemToCart, deleteItemFromCart } from "./controller/cartController.js";
 import { postWishlist, deleteWishlistItem, getWishlist } from "./controller/wishlistController.js";
+import { getCart, addItemToCart, deleteItemFromCart, modifyItemQuantity} from "./controller/cartController.js";
+
 
 
 const app = express();
@@ -72,6 +73,7 @@ app.put('/api/v1/editUserProfile',verifyJWTTokenMiddleware,  postUserInputDatenU
 app.get('/api/v1/cart',verifyJWTTokenMiddleware, getCart)
 app.post('/api/v1/cart',verifyJWTTokenMiddleware, addItemToCart)
 app.delete('/api/v1/cart',verifyJWTTokenMiddleware, deleteItemFromCart)
+app.put('/api/v1/cart/modify',verifyJWTTokenMiddleware, modifyItemQuantity)
 
 
 app.get('/api/v1/wishlist',verifyJWTTokenMiddleware, getWishlist)
