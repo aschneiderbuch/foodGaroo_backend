@@ -15,3 +15,4 @@ cloudinaryUpload() // 585 Fehler beim Hochladen cloudinaryUpload: "name" ist erf
 getProfileId() // 481 482  User mit ID: ${id} nicht gefunden
 getBadges() // 586 
 postUserInputDatenUpdaten() // 587 500 Fehler bei postUserInputDatenUpdaten
+postWishlistDatename() // 588  Fehler bei postWishlist
