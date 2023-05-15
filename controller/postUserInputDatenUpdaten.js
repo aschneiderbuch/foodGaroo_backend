@@ -10,13 +10,15 @@ export const postUserInputDatenUpdaten = async (req, res) => {
         // da user id aus der Middleware kommt wird     const {id} = req.params nicht mehr benötigt
         const id = req.user.user
         const db = await getDB()
-        console.log(id)
+       // console.log(id)
+
+     
 
         const user = await db.collection(COL).updateOne( { _id: new ObjectId(id) }, 
         {$set: { 
             firstname: req.body.firstname,
             lastname: req.body.lastname,
-             // email: req.body.email,     //  email darf aktuell nicht geändert werden
+              // email: req.body.email,     //  email darf aktuell nicht geändert werden
             address: {
                 street: req.body.address.street,
                 number: req.body.address.number,
