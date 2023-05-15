@@ -17,7 +17,7 @@ import { mongoDbFilterQueryController } from "./controller/mongoDbFilterQueryCon
 import { getBadges } from "./controller/getBadges.js";
 import { postUserInputDatenUpdaten } from "./controller/postUserInputDatenUpdaten.js";
 import { postWishlist, deleteWishlistItem, getWishlist } from "./controller/wishlistController.js";
-import { getCart, addItemToCart, deleteItemFromCart, modifyItemQuantity} from "./controller/cartController.js";
+import { getCart, addItemToCart, deleteItemFromCart, modifyItemQuantity,getCartCount} from "./controller/cartController.js";
 
 
 
@@ -74,6 +74,7 @@ app.get('/api/v1/cart',verifyJWTTokenMiddleware, getCart)
 app.post('/api/v1/cart',verifyJWTTokenMiddleware, addItemToCart)
 app.delete('/api/v1/cart',verifyJWTTokenMiddleware, deleteItemFromCart)
 app.put('/api/v1/cart/modify',verifyJWTTokenMiddleware, modifyItemQuantity)
+app.get('/api/v1/cart/count',verifyJWTTokenMiddleware, getCartCount)
 
 
 app.get('/api/v1/wishlist',verifyJWTTokenMiddleware, getWishlist)

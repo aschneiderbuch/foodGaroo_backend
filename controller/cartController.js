@@ -12,6 +12,16 @@ export const getCart = async function(req, res){
         res.status(501).end()
     }
 }
+export const getCartCount = async function(req, res){
+    try{
+        const db = await getDB()
+        const cart = await db.collection("carts").findOne({userID: new ObjectId(req.user.user)})
+        res.json({count: cart.items.length}).end
+    }catch(err){
+        console.log(err)
+        res.status(501).end()
+    }
+}
 export const addItemToCart = async function(req, res){
     const filter = { userID: new ObjectId(req.user.user) };
     const updateDOC = {
