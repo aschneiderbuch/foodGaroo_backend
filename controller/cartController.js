@@ -5,7 +5,7 @@ import { ObjectId } from 'mongodb'
 export const getCart = async function(req, res){
     try{
         const db = await getDB()
-        const cart = db.collection("carts").findOne({_id: new ObjectId(req.params.id)})
+        const cart = await db.collection("carts").findOne({userID: new ObjectId(req.user.user)})
         res.json(cart).end
     }catch(err){
         console.log(err)
@@ -13,13 +13,30 @@ export const getCart = async function(req, res){
     }
 }
 export const addItemToCart = async function(req, res){
-    const filter = { _id: new ObjectId(req.params.id) };
+    const filter = { userID: new ObjectId(req.user.user) };
     const updateDOC = {
         $setOnInsert: {
-            userID: new ObjectID(req.user.user),
-            items: []
+            userID: new ObjectId(req.user.user),
+            
         },
         $push: {
+            items: req.body.item
+        }
+    }
+    const options = { upsert: true };
+    try{
+        const db = await getDB()
+        await db.collection("carts").updateOne(filter,updateDOC,options)
+        res.status(200).end()
+    }catch(err){
+        console.log(err)
+        res.status(500).end()
+    }
+}
+export const deleteItemFromCart = async function(req, res){
+    const filter = { userID: new ObjectId(req.user.user) };
+    const updateDOC = {
+        $pull: {
             items: req.body.item
         }
     }
