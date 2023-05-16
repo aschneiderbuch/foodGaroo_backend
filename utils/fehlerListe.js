@@ -13,6 +13,7 @@ import { addItemToCart } from "../controller/cartController";
 import { getCartCheckout } from "../controller/getCartCheckout";
 import { getDeals } from "../controller/getDeals";
 import { getDealsMember } from "../controller/getDealsMember";
+import { getOrders } from "../controller/getOrders";
 
 login() // 581 User Login     // 404 User Not Found
 verifyToken() // 582 Token konnte nicht verifiziert werden
@@ -31,3 +32,4 @@ addItemToCart() // 593  Fehler bei quantity zusammenrechnen
 getCartCheckout() // 594  Fehler bei getCartCheckout
 getDeals() // 595 Fehler bei getDeals
 getDealsMember() // 596 Fehler bei getDealsMember
+getOrders() // 597 Fehler bei getOrders

@@ -23,6 +23,7 @@ import { getCartTotalPrice } from "./controller/getCartTotalPrice.js";
 import { getCartCheckout } from "./controller/getCartCheckout.js";
 import { getDeals } from "./controller/getDeals.js";
 import { getDealsMember } from "./controller/getDealsMember.js";
+import { getOrders } from "./controller/getOrders.js";
 
 
 
@@ -92,9 +93,8 @@ app.get('/api/v1/userName', verifyJWTTokenMiddleware, getUserName)
 app.get('/api/v1/deals', verifyJWTTokenMiddleware, getDeals)
 app.get('/api/v1/dealsMember', verifyJWTTokenMiddleware, getDealsMember)
 
-// ! noch fertig machen
 app.get('/api/v1/cart/checkout',verifyJWTTokenMiddleware, getCartCheckout)
-
+app.get('/api/v1/orders',verifyJWTTokenMiddleware, getOrders)
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));
 // test ob render jetzt geht
