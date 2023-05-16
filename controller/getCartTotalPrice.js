@@ -18,6 +18,8 @@ export const getCartTotalPrice = async (req, res) => {
         for (let i = 0; i < items.length; i++) {
             totalPrice += items[i].price * items[i].quantity
         }
+        totalPrice = totalPrice.toFixed(2)
+
         res.status(200).json({ totalPrice: totalPrice }).end()
     } catch (err) {
         console.log(err, 592)
