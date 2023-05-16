@@ -7,6 +7,7 @@ import { postUserInputDatenUpdaten } from "../controller/postUserInputDatenUpdat
 import { verifyJWTTokenMiddleware } from "../middlewares/verifyJWTTokenMiddleware";
 import { verifyToken } from "./token";
 import { postWishlist, deleteWishlistItem, getWishlist } from "../controller/wishlistController";
+import { getUserName } from "../controller/getUserName";
 
 login() // 581 User Login     // 404 User Not Found
 verifyToken() // 582 Token konnte nicht verifiziert werden
@@ -19,3 +20,4 @@ postUserInputDatenUpdaten() // 587 500 Fehler bei postUserInputDatenUpdaten
 postWishlist() // 588  Fehler bei postWishlist
 deleteWishlistItem() // 589
 getWishlist() // 590
+getUserName() // 591

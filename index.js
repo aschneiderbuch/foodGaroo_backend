@@ -18,6 +18,7 @@ import { getBadges } from "./controller/getBadges.js";
 import { postUserInputDatenUpdaten } from "./controller/postUserInputDatenUpdaten.js";
 import { postWishlist, deleteWishlistItem, getWishlist } from "./controller/wishlistController.js";
 import { getCart, addItemToCart, deleteItemFromCart, modifyItemQuantity,getCartCount} from "./controller/cartController.js";
+import { getUserName } from "./controller/getUserName.js";
 
 
 
@@ -80,6 +81,8 @@ app.get('/api/v1/cart/count',verifyJWTTokenMiddleware, getCartCount)
 app.get('/api/v1/wishlist',verifyJWTTokenMiddleware, getWishlist)
 app.post('/api/v1/addWishlist',verifyJWTTokenMiddleware, postWishlist)
 app.delete('/api/v1/deleteWishlist',verifyJWTTokenMiddleware, deleteWishlistItem)
+
+app.get('/api/v1/userName', verifyJWTTokenMiddleware, getUserName)
 
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));
