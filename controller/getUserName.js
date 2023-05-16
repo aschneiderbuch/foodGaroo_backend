@@ -13,8 +13,8 @@ export const getUserName = async (req, res) => {
         console.log(user)
         res.status(200).json(user).end()
     } catch (err) {
-        console.log(err)
-        res.status(500).json({ message: `Fehler bei getUserName` })
+        console.log(err, 591)
+        res.status(500).json({ message: `Fehler bei getUserName` },591)
     }
 }
 

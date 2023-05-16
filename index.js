@@ -19,6 +19,7 @@ import { postUserInputDatenUpdaten } from "./controller/postUserInputDatenUpdate
 import { postWishlist, deleteWishlistItem, getWishlist } from "./controller/wishlistController.js";
 import { getCart, addItemToCart, deleteItemFromCart, modifyItemQuantity,getCartCount} from "./controller/cartController.js";
 import { getUserName } from "./controller/getUserName.js";
+import { getCartTotalPrice } from "./controller/getCartTotalPrice.js";
 
 
 
@@ -76,6 +77,8 @@ app.post('/api/v1/cart',verifyJWTTokenMiddleware, addItemToCart)
 app.delete('/api/v1/cart',verifyJWTTokenMiddleware, deleteItemFromCart)
 app.put('/api/v1/cart/modify',verifyJWTTokenMiddleware, modifyItemQuantity)
 app.get('/api/v1/cart/count',verifyJWTTokenMiddleware, getCartCount)
+
+app.get('/api/v1/cart/totalPrice',verifyJWTTokenMiddleware, getCartTotalPrice)
 
 
 app.get('/api/v1/wishlist',verifyJWTTokenMiddleware, getWishlist)

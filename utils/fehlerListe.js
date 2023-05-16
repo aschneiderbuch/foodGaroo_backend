@@ -8,6 +8,7 @@ import { verifyJWTTokenMiddleware } from "../middlewares/verifyJWTTokenMiddlewar
 import { verifyToken } from "./token";
 import { postWishlist, deleteWishlistItem, getWishlist } from "../controller/wishlistController";
 import { getUserName } from "../controller/getUserName";
+import { getCartTotalPrice } from "../controller/getCartTotalPrice";
 
 login() // 581 User Login     // 404 User Not Found
 verifyToken() // 582 Token konnte nicht verifiziert werden
@@ -21,3 +22,4 @@ postWishlist() // 588  Fehler bei postWishlist
 deleteWishlistItem() // 589
 getWishlist() // 590
 getUserName() // 591
+getCartTotalPrice() // 592
