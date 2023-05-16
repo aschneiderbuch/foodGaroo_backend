@@ -52,7 +52,7 @@ app.post(
     cloudinaryUpload
 );
 
-app.get("/api/v1/filter", mongoDbFilterQueryController);
+app.get("/api/v1/filter",verifyJWTTokenMiddleware, mongoDbFilterQueryController);
 
 app.get("/api/v1/profile", verifyJWTTokenMiddleware, getProfileId);
 
@@ -62,10 +62,10 @@ app.get("/api/v1/verify", verifyJWTTokenMiddleware, (_, res) => {
     res.end();
 });
 
-app.get("/api/v1/search", search);
-app.get("/api/v1/categories", getCategories);
-app.get("/api/v1/products", getProductsFromCategories);
-app.get("/api/v1/product/:id", getProductDetails)
+app.get("/api/v1/search",verifyJWTTokenMiddleware, search);
+app.get("/api/v1/categories",verifyJWTTokenMiddleware, getCategories);
+app.get("/api/v1/products",verifyJWTTokenMiddleware, getProductsFromCategories);
+app.get("/api/v1/product/:id",verifyJWTTokenMiddleware, getProductDetails)
 
 app.get('/api/v1/badges',verifyJWTTokenMiddleware, getBadges)
 app.put('/api/v1/editUserProfile',verifyJWTTokenMiddleware,  postUserInputDatenUpdaten)
