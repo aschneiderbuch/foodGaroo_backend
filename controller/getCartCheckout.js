@@ -40,6 +40,7 @@ export const getCartCheckout = async (req, res) => {
         // vergleich ob deals noch gültig ist
         let sindDealsNochGueltig = false
 
+
         let cartItems = cart.items
         let dealsItems = deals[0].items
 
@@ -82,7 +83,7 @@ export const getCartCheckout = async (req, res) => {
                         cartItems[i].priceOld = cartItems[i].price
                         priceNeu = cartItems[i].price - (cartItems[i].price * rabatt / 100)
 
-                        cartItems[i].price = priceNeu.
+                        cartItems[i].price = priceNeu
 
                         cartItems[i].priceNeu = priceNeu
                         // Rabatt wurde bei item angewendet
@@ -130,7 +131,7 @@ export const getCartCheckout = async (req, res) => {
         }
 
         // ins order Objekt schreiben
-        order.totalPrice = gesamtPreisAllerItems.
+        order.totalPrice = gesamtPreisAllerItems
         order.sum = gesamtPreisAllerItems
 
         // jetzt alte cart aus COL_carts löschen

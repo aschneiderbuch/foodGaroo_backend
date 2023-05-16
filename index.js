@@ -24,6 +24,7 @@ import { getCartCheckout } from "./controller/getCartCheckout.js";
 import { getDeals } from "./controller/getDeals.js";
 import { getDealsMember } from "./controller/getDealsMember.js";
 import { getOrders } from "./controller/getOrders.js";
+import { getOrdersById } from "./controller/getOrdersById.js";
 
 
 
@@ -49,7 +50,6 @@ app.post("/api/v1/login", encryptPassword, login);
 app.get("/api/v1/availiable", emailAvailable);
 app.post("/api/v1/register", encryptPassword, register);
 
-// ! dann noch      verifyJWTTokenMiddleware  mit rein // as für die Route
 app.post(
     "/api/v1/directupload",
     verifyJWTTokenMiddleware,
@@ -95,6 +95,7 @@ app.get('/api/v1/dealsMember', verifyJWTTokenMiddleware, getDealsMember)
 
 app.get('/api/v1/cart/checkout',verifyJWTTokenMiddleware, getCartCheckout)
 app.get('/api/v1/orders',verifyJWTTokenMiddleware, getOrders)
+app.get('/api/v1/orders/:id',verifyJWTTokenMiddleware, getOrdersById)
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));
 // test ob render jetzt geht
