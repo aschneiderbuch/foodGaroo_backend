@@ -20,6 +20,8 @@ import { postWishlist, deleteWishlistItem, getWishlist } from "./controller/wish
 import { getCart, addItemToCart, deleteItemFromCart, modifyItemQuantity,getCartCount} from "./controller/cartController.js";
 import { getUserName } from "./controller/getUserName.js";
 import { getCartTotalPrice } from "./controller/getCartTotalPrice.js";
+import { getCartCheckout } from "./controller/getCartCheckout.js";
+import { getDeals } from "./controller/getDeals.js";
 
 
 
@@ -80,12 +82,16 @@ app.get('/api/v1/cart/count',verifyJWTTokenMiddleware, getCartCount)
 
 app.get('/api/v1/cart/totalPrice',verifyJWTTokenMiddleware, getCartTotalPrice)
 
-
 app.get('/api/v1/wishlist',verifyJWTTokenMiddleware, getWishlist)
 app.post('/api/v1/addWishlist',verifyJWTTokenMiddleware, postWishlist)
 app.delete('/api/v1/deleteWishlist',verifyJWTTokenMiddleware, deleteWishlistItem)
 
 app.get('/api/v1/userName', verifyJWTTokenMiddleware, getUserName)
+
+app.get('/api/v1/deals', verifyJWTTokenMiddleware, getDeals)
+
+// ! noch fertig machen
+app.get('/api/v1/cart/checkout',verifyJWTTokenMiddleware, getCartCheckout)
 
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));

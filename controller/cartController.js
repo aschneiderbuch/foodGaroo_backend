@@ -33,7 +33,7 @@ export const addItemToCart = async function(req, res){
      dann die neue quantity in die MongoDB schreiben */
     const db = await getDB()
     const cart = await db.collection(COL).findOne({ userID: new ObjectId(id) })  // find user carts
-    const items = cart.items // 
+    const items = cart.items // array mit items
     let itemSchonVorhanden = false
     let itemIndex = 0
     for (let i = 0; i < items.length; i++) {     // Schleife über alle items

@@ -10,6 +10,8 @@ import { postWishlist, deleteWishlistItem, getWishlist } from "../controller/wis
 import { getUserName } from "../controller/getUserName";
 import { getCartTotalPrice } from "../controller/getCartTotalPrice";
 import { addItemToCart } from "../controller/cartController";
+import { getCartCheckout } from "../controller/getCartCheckout";
+import { getDeals } from "../controller/getDeals";
 
 login() // 581 User Login     // 404 User Not Found
 verifyToken() // 582 Token konnte nicht verifiziert werden
@@ -25,3 +27,5 @@ getWishlist() // 590
 getUserName() // 591
 getCartTotalPrice() // 592
 addItemToCart() // 593  Fehler bei quantity zusammenrechnen
+getCartCheckout() // 594  Fehler bei getCartCheckout
+getDeals() // 595 Fehler bei getDeals
