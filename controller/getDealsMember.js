@@ -2,9 +2,9 @@ import { getDB } from '../utils/db.js'
 import { ObjectId } from 'mongodb'
 
 
-// 595
-const COL = 'deals'
-export const getDeals = async (req, res) => {
+// 596
+const COL = 'dealsMember'
+export const getDealsMember = async (req, res) => {
     try {
         const id = req.user.user
         const db = await getDB()

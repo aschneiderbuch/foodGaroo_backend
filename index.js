@@ -22,6 +22,7 @@ import { getUserName } from "./controller/getUserName.js";
 import { getCartTotalPrice } from "./controller/getCartTotalPrice.js";
 import { getCartCheckout } from "./controller/getCartCheckout.js";
 import { getDeals } from "./controller/getDeals.js";
+import { getDealsMember } from "./controller/getDealsMember.js";
 
 
 
@@ -89,6 +90,7 @@ app.delete('/api/v1/deleteWishlist',verifyJWTTokenMiddleware, deleteWishlistItem
 app.get('/api/v1/userName', verifyJWTTokenMiddleware, getUserName)
 
 app.get('/api/v1/deals', verifyJWTTokenMiddleware, getDeals)
+app.get('/api/v1/dealsMember', verifyJWTTokenMiddleware, getDealsMember)
 
 // ! noch fertig machen
 app.get('/api/v1/cart/checkout',verifyJWTTokenMiddleware, getCartCheckout)
