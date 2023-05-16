@@ -9,6 +9,7 @@ import { verifyToken } from "./token";
 import { postWishlist, deleteWishlistItem, getWishlist } from "../controller/wishlistController";
 import { getUserName } from "../controller/getUserName";
 import { getCartTotalPrice } from "../controller/getCartTotalPrice";
+import { addItemToCart } from "../controller/cartController";
 
 login() // 581 User Login     // 404 User Not Found
 verifyToken() // 582 Token konnte nicht verifiziert werden
@@ -23,3 +24,4 @@ deleteWishlistItem() // 589
 getWishlist() // 590
 getUserName() // 591
 getCartTotalPrice() // 592
+addItemToCart() // 593  Fehler bei quantity zusammenrechnen

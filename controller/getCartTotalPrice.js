@@ -4,7 +4,10 @@ import { ObjectId } from "mongodb"
 
 // 592 500 Fehler bei getCartTotalPrice
 const COL = 'carts'
-// cart soll nach der objectId des users gefiltert werden, dann sollen alle items in cart aufgelistet werden, dann soll der price von jedem item in cart mit dem quantity jedes items aufsummiert werden
+/* // cart soll nach der objectId des users gefiltert werden, 
+dann sollen alle items in cart aufgelistet werden, 
+dann soll der price von jedem item in cart mit dem quantity jedes items aufsummiert werden
+ */
 export const getCartTotalPrice = async (req, res) => {
     try {
         const id = req.user.user
