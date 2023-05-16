@@ -51,12 +51,12 @@ export const getCartCheckout = async (req, res) => {
             _id: new ObjectId(),
             userID: new ObjectId(id),
             items: [],   //  cart.items,
-            totalPrice: '',
+            totalPrice: 0,
             deals: 0,
             percentage: 0,
             dealsDate: '',
             date: '',
-            sum: '',
+            sum: 0,
             payment_status: 'paid', // ['paid', 'refunded'],
             status: 'pending' // ['pending', 'processing', 'cancelled', 'picked', 'shipped'],
         }
@@ -82,7 +82,7 @@ export const getCartCheckout = async (req, res) => {
                         cartItems[i].priceOld = cartItems[i].price
                         priceNeu = cartItems[i].price - (cartItems[i].price * rabatt / 100)
 
-                        cartItems[i].price = priceNeu
+                        cartItems[i].price = priceNeu.
 
                         cartItems[i].priceNeu = priceNeu
                         // Rabatt wurde bei item angewendet
@@ -93,6 +93,8 @@ export const getCartCheckout = async (req, res) => {
                         cartItems[i].deals = deals[0]._id
                         cartItems[i].dealsDate = dateNow
                         order.dealsDate = dateNow
+                        cartItems[i].status = 'pending'
+                        cartItems[i].payment_status = order?.payment_status
                         // datum als datum umwandeln und in dealsDateLesbar speichern
                         cartItems[i].dealsDateLesbar = new Date(dateNow)
                         order.date = new Date(dateNow)
@@ -128,7 +130,7 @@ export const getCartCheckout = async (req, res) => {
         }
 
         // ins order Objekt schreiben
-        order.totalPrice = gesamtPreisAllerItems
+        order.totalPrice = gesamtPreisAllerItems.
         order.sum = gesamtPreisAllerItems
 
         // jetzt alte cart aus COL_carts löschen

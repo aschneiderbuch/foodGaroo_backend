@@ -10,6 +10,7 @@ export const getOrders = async (req, res ) => {
 
         const db = await getDB()
         const orders = await db.collection(COL).find( {userID: new ObjectId(id)} ).toArray()
+
         res.status(200).json(orders)
     }catch(err){
         console.log(err , 597)
