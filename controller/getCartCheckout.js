@@ -2,7 +2,6 @@ import { log } from 'console'
 import { getDB } from '../utils/db.js'
 import { ObjectId } from 'mongodb'
 
-foodGuru.spoonecularGroceries
 
 // 594 
 /* holt sich id über req.user.user
