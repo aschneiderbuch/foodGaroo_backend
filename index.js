@@ -25,6 +25,7 @@ import { getDeals } from "./controller/getDeals.js";
 import { getDealsMember } from "./controller/getDealsMember.js";
 import { getOrders } from "./controller/getOrders.js";
 import { getOrdersById } from "./controller/getOrdersById.js";
+import {body} from "express-validator"
 
 
 
@@ -48,7 +49,15 @@ app.post("/api/v1/login", encryptPassword, login);
 // ! Vorsicht token ist wegen Testen auf 20 Tage gesetzt
 
 app.get("/api/v1/availiable", emailAvailable);
-app.post("/api/v1/register", encryptPassword, register);
+app.post("/api/v1/register", 
+    body("password").isStrongPassword(
+        {
+            minLength: 8,
+
+        }
+    ),
+        encryptPassword, 
+        register);
 
 app.post(
     "/api/v1/directupload",
