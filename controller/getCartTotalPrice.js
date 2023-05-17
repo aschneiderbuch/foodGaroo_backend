@@ -12,11 +12,17 @@ export const getCartTotalPrice = async (req, res) => {
     try {
         const id = req.user.user
         const db = await getDB()
-        const cart = await db.collection(COL).findOne({ userID: new ObjectId(id) })
-       const items = cart.items
-       // console.log(cart?.items[0].price)
-      //  console.log(cart?.items[0].quantity)
+        let cart = await db.collection(COL).findOne({ userID: new ObjectId(id) })
         
+        // damit es bei checkout Button nicht zu Fehler kommt
+        if (cart === null || cart === undefined) {
+            cart = await db.collection(COL).insertOne({ userID: new ObjectId(id), items: [] })
+        }
+        let items = [{}]
+        items = cart.items
+        // console.log(cart?.items[0].price)
+        //  console.log(cart?.items[0].quantity)
+
         let totalPrice = 0
         for (let i = 0; i < items.length; i++) {
             totalPrice += items[i].price * items[i].quantity

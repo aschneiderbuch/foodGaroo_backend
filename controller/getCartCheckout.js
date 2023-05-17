@@ -41,7 +41,9 @@ export const getCartCheckout = async (req, res) => {
         let sindDealsNochGueltig = false
 
 
-        let cartItems = cart.items
+        let cartItems = [{}]
+        cartItems = cart.items
+        console.log(cartItems)
         let dealsItems = deals[0].items
 
         let priceNeu = 0
