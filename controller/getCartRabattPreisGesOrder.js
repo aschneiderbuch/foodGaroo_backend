@@ -2,9 +2,7 @@ import { log } from 'console'
 import { getDB } from '../utils/db.js'
 import { ObjectId } from 'mongodb'
 
-foodGuru.spoonecularGroceries
-
-// 594 
+// 599
 /* holt sich id über req.user.user
 dann holt mal sich die COL_carts und die COL_deals
 alle datum werden in new Date() umgewandelt so das sie als datum vergleichbar sind und als zahl gespeichert werden
@@ -20,7 +18,7 @@ der carts des users wird komplett gelöscht  */
 const COL_carts = 'carts'
 const COL_deals = 'deals'
 const COL_orders = 'orders'
-export const getCartCheckout = async (req, res) => {
+export const getCartRabattPreisGesOrder = async (req, res) => {
     try {
         const id = req.user.user
         const db = await getDB()
@@ -139,12 +137,12 @@ export const getCartCheckout = async (req, res) => {
         order.sum = gesamtPreisAllerItems
 
         // jetzt alte cart aus COL_carts löschen
-        await db.collection(COL_carts).deleteOne({ userID: new ObjectId(id)})
+      //  await db.collection(COL_carts).deleteOne({ userID: new ObjectId(id)})
 
         // jetzt order in COL_orders speichern
-        await db.collection(COL_orders).insertOne(order)
+      //  await db.collection(COL_orders).insertOne(order)
 
-        res.status(200).json(order).end()
+        res.status(200).json(order.sum).end()
 
     } catch (err) {
         console.log(err, 594)

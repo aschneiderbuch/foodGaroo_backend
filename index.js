@@ -26,6 +26,7 @@ import { getDealsMember } from "./controller/getDealsMember.js";
 import { getOrders } from "./controller/getOrders.js";
 import { getOrdersById } from "./controller/getOrdersById.js";
 import {body} from "express-validator"
+import { getCartRabattPreisGesOrder } from "./controller/getCartRabattPreisGesOrder.js";
 
 
 
@@ -105,6 +106,8 @@ app.get('/api/v1/dealsMember', verifyJWTTokenMiddleware, getDealsMember)
 app.get('/api/v1/cart/checkout',verifyJWTTokenMiddleware, getCartCheckout)
 app.get('/api/v1/orders',verifyJWTTokenMiddleware, getOrders)
 app.get('/api/v1/orders/:id',verifyJWTTokenMiddleware, getOrdersById)
+
+app.get('/api/v1/cart/rabattPreisGesOrder',verifyJWTTokenMiddleware, getCartRabattPreisGesOrder)
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));
 // test ob render jetzt geht

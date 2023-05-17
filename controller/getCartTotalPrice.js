@@ -21,7 +21,7 @@ export const getCartTotalPrice = async (req, res) => {
         }
 
         // damit es bei checkout Button nicht zu Fehler kommt
-        if (cart !== null || cart !== undefined && Array.isArray(cart)) {
+        if (cart !== null && cart !== undefined && Array.isArray(cart)) {
             items = cart.items
         }
 
@@ -33,7 +33,7 @@ export const getCartTotalPrice = async (req, res) => {
 
         let totalPrice = 0
         // if löst den Fehler bei checkout Button
-        if (items !== null || items !== undefined) {
+        if (items !== null || items !== undefined && Array.isArray(items)) {
             for (let i = 0; i < items.length; i++) {
                 totalPrice += items[i].price * items[i].quantity
             }

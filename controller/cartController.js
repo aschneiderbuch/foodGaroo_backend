@@ -1,36 +1,45 @@
-import {getDB} from "../utils/db.js"
+import { getDB } from "../utils/db.js"
 import { ObjectId } from 'mongodb'
 
 
-export const getCart = async function(req, res){
-    try{
+export const getCart = async function (req, res) {
+    try {
         const db = await getDB()
-        const cart = await db.collection("carts").findOne({userID: new ObjectId(req.user.user)})
+        const cart = await db.collection("carts").findOne({ userID: new ObjectId(req.user.user) })
         res.json(cart).end
-    }catch(err){
+    } catch (err) {
         console.log(err)
         res.status(501).end()
     }
 }
-export const getCartCount = async function(req, res){
-    try{
+export const getCartCount = async function (req, res) {
+    try {
         const db = await getDB()
-        const cart = await db.collection("carts").findOne({userID: new ObjectId(req.user.user)})
-       
+        let cart = await db.collection("carts").findOne({ userID: new ObjectId(req.user.user) })
+
         // damit es bei checkout Button nicht zu Fehler kommt
+        // wenn er mehrmals hintereinander ohne Einkaufswagen Inhalt drückt
         let items = []
+        const id = req.user.user
         if (cart === null || cart === undefined) {
             cart = await db.collection(COL).insertOne({ userID: new ObjectId(id), items: [] })
         }
-        res.json({count: cart.items.length}).end
-    }catch(err){
+
+        // damit es bei checkout Button nicht zu Fehler kommt
+        if (cart !== null && cart !== undefined && Array.isArray(cart)) {
+            items = cart.items
+        }
+
+
+        res.json({ count: cart.items.length }).end
+    } catch (err) {
         console.log(err)
         res.status(501).end()
     }
 }
 
 const COL = 'carts'
-export const addItemToCart = async function(req, res){
+export const addItemToCart = async function (req, res) {
 
     const id = req.user.user
     /* prüfen ob das item das vom FrontEnd kommt schon in der MongoDB vorhanden ist 
@@ -57,42 +66,43 @@ export const addItemToCart = async function(req, res){
             }
         }
         const options = { upsert: true };
-        try{
+        try {
             const db = await getDB()
-            await db.collection(COL).updateOne(filter,updateDOC,options)
+            await db.collection(COL).updateOne(filter, updateDOC, options)
             res.status(200).end()
-        }catch(err){
-            console.log(err , 593)
+        } catch (err) {
+            console.log(err, 593)
             res.status(500).end()
         }
     } else {
 
 
 
-    const filter = { userID: new ObjectId(req.user.user) };
-    const updateDOC = {
-        $setOnInsert: {
-            userID: new ObjectId(req.user.user),
-            
-        },
-        $push: {
-            items: req.body.item
+        const filter = { userID: new ObjectId(req.user.user) };
+        const updateDOC = {
+            $setOnInsert: {
+                userID: new ObjectId(req.user.user),
+
+            },
+            $push: {
+                items: req.body.item
+            }
+        }
+        const options = { upsert: true };
+        try {
+            const db = await getDB()
+            await db.collection("carts").updateOne(filter, updateDOC, options)
+            res.status(200).end()
+        } catch (err) {
+            console.log(err)
+            res.status(500).end()
         }
     }
-    const options = { upsert: true };
-    try{
-        const db = await getDB()
-        await db.collection("carts").updateOne(filter,updateDOC,options)
-        res.status(200).end()
-    }catch(err){
-        console.log(err)
-        res.status(500).end()
-    }
-}}
+}
 
 
 
-export const deleteItemFromCart = async function(req, res){
+export const deleteItemFromCart = async function (req, res) {
     const filter = { userID: new ObjectId(req.user.user) };
     const updateDOC = {
         $pull: {
@@ -100,16 +110,16 @@ export const deleteItemFromCart = async function(req, res){
         }
     }
     const options = { upsert: true };
-    try{
+    try {
         const db = await getDB()
-        await db.collection("carts").updateOne(filter,updateDOC,options)
+        await db.collection("carts").updateOne(filter, updateDOC, options)
         res.status(200).end()
-    }catch(err){
+    } catch (err) {
         console.log(err)
         res.status(500).end()
     }
 }
-export const modifyItemQuantity = async function(req, res){
+export const modifyItemQuantity = async function (req, res) {
     const filter = { userID: new ObjectId(req.user.user) };
     const updateDOC = {
         $set: {
@@ -117,11 +127,11 @@ export const modifyItemQuantity = async function(req, res){
         }
     }
     const options = { upsert: true };
-    try{
+    try {
         const db = await getDB()
-        await db.collection("carts").updateOne(filter,updateDOC,options)
+        await db.collection("carts").updateOne(filter, updateDOC, options)
         res.status(200).end()
-    }catch(err){
+    } catch (err) {
         console.log(err)
         res.status(500).end()
     }

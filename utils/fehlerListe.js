@@ -15,6 +15,7 @@ import { getDeals } from "../controller/getDeals";
 import { getDealsMember } from "../controller/getDealsMember";
 import { getOrders } from "../controller/getOrders";
 import { getOrdersById } from "../controller/getOrdersById";
+import { getCartRabattPreisGesOrder } from "../controller/getCartRabattPreisGesOrder";
 
 login() // 581 User Login     // 404 User Not Found
 verifyToken() // 582 Token konnte nicht verifiziert werden
@@ -35,3 +36,4 @@ getDeals() // 595 Fehler bei getDeals
 getDealsMember() // 596 Fehler bei getDealsMember
 getOrders() // 597 Fehler bei getOrders
 getOrdersById() // 598 Fehler bei getOrdersById
+getCartRabattPreisGesOrder() // 599 Fehler bei getCartRabattPreisGesOrder
