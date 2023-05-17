@@ -21,6 +21,8 @@ const COL_orders = 'orders'
 export const getCartRabattPreisGesOrder = async (req, res) => {
     try {
         const id = req.user.user
+        console.log('################## id ##################')
+        console.log(id)
         const db = await getDB()
         const cart = await db.collection(COL_carts).findOne({ userID: new ObjectId(id) })  // find user carts
         const deals = await db.collection(COL_deals).find({}).toArray()

@@ -18,6 +18,7 @@ export const getCartTotalPrice = async (req, res) => {
         let items = []
         if (cart === null || cart === undefined) {
             cart = await db.collection(COL).insertOne({ userID: new ObjectId(id), items: [] })
+            items = cart.items
         }
 
         // damit es bei checkout Button nicht zu Fehler kommt
@@ -27,7 +28,7 @@ export const getCartTotalPrice = async (req, res) => {
 
 
 
-       // items = cart.items
+        items = cart.items
         // console.log(cart?.items[0].price)
         //  console.log(cart?.items[0].quantity)
 
@@ -38,7 +39,7 @@ export const getCartTotalPrice = async (req, res) => {
                 totalPrice += items[i].price * items[i].quantity
             }
         }
-    
+
         totalPrice = totalPrice.toFixed(2)
 
         res.status(200).json({ totalPrice: totalPrice }).end()
