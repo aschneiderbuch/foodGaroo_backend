@@ -16,6 +16,12 @@ export const getCartCount = async function(req, res){
     try{
         const db = await getDB()
         const cart = await db.collection("carts").findOne({userID: new ObjectId(req.user.user)})
+       
+        // damit es bei checkout Button nicht zu Fehler kommt
+        let items = []
+        if (cart === null || cart === undefined) {
+            cart = await db.collection(COL).insertOne({ userID: new ObjectId(id), items: [] })
+        }
         res.json({count: cart.items.length}).end
     }catch(err){
         console.log(err)
